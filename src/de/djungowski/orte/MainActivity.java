@@ -1,10 +1,10 @@
 package de.djungowski.orte;
 
-import java.util.Date;
+import java.util.Random;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -46,7 +45,30 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	public Integer getRandomNumber()
+	{
+		final Random random = new Random();
+		return random.nextInt(111);
+	}
+	
+	public void generateNewRandomNumber(View view)
+	{
+		TextView text = (TextView)findViewById(R.id.random_number);
+		updateText(text); 
+	}
+	
+	public void setRandomNumberOnStartup(View view)
+	{
+		TextView text = (TextView)view.findViewById(R.id.random_number);
+		updateText(text);
+	}
+	
+	public void updateText(TextView text)
+	{
+		text.setText(Integer.toString(getRandomNumber()));
+	}
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -61,11 +83,14 @@ public class MainActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);			
 		
-			TextView text = (TextView)rootView.findViewById(R.id.text1);
-			text.setText(new Date().toString());
+			Activity activity = getActivity();
+			if (activity instanceof MainActivity) {
+				MainActivity mainActivity = (MainActivity) activity;
+				mainActivity.setRandomNumberOnStartup(rootView);
+			}
 			
 			return rootView;
-		}
+		}		
 	}
 
 }

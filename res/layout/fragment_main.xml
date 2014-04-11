@@ -8,19 +8,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="de.djungowski.orte.MainActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/generate_new_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
-        android:text="Reload" />
+        android:text="@string/generate_new_number"
+        android:onClick="generateNewRandomNumber" />
+
+    <TextView
+        android:id="@+id/random_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/generate_new_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="138dp"
+        android:text="@string/random_number"
+        android:textSize="70sp" />
 
 </RelativeLayout>

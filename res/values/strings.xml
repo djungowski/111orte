@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">111 Orte in München</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="random_number">0</string>
+    <string name="generate_new_number">Neue Zahl</string>
     <string name="action_settings">Settings</string>
 
 </resources>
