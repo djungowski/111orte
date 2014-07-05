@@ -55,16 +55,16 @@ public class MainActivity extends ActionBarActivity {
 	public void generateNewRandomNumber(View view)
 	{
 		TextView text = (TextView)findViewById(R.id.random_number);
-		updateText(text); 
+		updateTextWithNewRandomNumber(text); 
 	}
 	
 	public void setRandomNumberOnStartup(View view)
 	{
 		TextView text = (TextView)view.findViewById(R.id.random_number);
-		updateText(text);
+		updateTextWithNewRandomNumber(text);
 	}
 	
-	public void updateText(TextView text)
+	public void updateTextWithNewRandomNumber(TextView text)
 	{
 		text.setText(Integer.toString(getRandomNumber()));
 	}
