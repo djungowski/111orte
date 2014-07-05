@@ -48,8 +48,8 @@ public class MainActivity extends ActionBarActivity {
 	
 	public Integer getRandomNumber()
 	{
-		final Random random = new Random();
-		return random.nextInt(111);
+		final RandomNumberGenerator random = new RandomNumberGenerator(new Random());
+		return random.getNext();
 	}
 	
 	public void generateNewRandomNumber(View view)
