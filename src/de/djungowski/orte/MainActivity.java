@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -64,6 +64,12 @@ public class MainActivity extends ActionBarActivity {
 		updateTextWithNewRandomNumber(text);
 	}
 	
+	public void setRandomNumberOnStartup(View view, CharSequence randomNumber)
+	{
+		final TextView textView = (TextView)view.findViewById(R.id.random_number);
+		textView.setText(randomNumber.toString());
+	}
+	
 	public void updateTextWithNewRandomNumber(TextView text)
 	{
 		text.setText(Integer.toString(getRandomNumber()));
@@ -74,21 +80,36 @@ public class MainActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		View rootView;
+		
 		public PlaceholderFragment() {
+		}
+		
+		@Override
+		public void onSaveInstanceState(Bundle outState) {
+			super.onSaveInstanceState(outState);
+			final TextView text = (TextView)rootView.findViewById(R.id.random_number);
+			outState.putCharSequence("foo", text.getText());
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			
+			rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);			
-		
+
 			Activity activity = getActivity();
+
 			if (activity instanceof MainActivity) {
 				MainActivity mainActivity = (MainActivity) activity;
-				mainActivity.setRandomNumberOnStartup(rootView);
+				
+				if (savedInstanceState != null) {
+					mainActivity.setRandomNumberOnStartup(rootView, savedInstanceState.getCharSequence("foo"));
+				} else {
+					mainActivity.setRandomNumberOnStartup(rootView);
+				}
 			}
-			
 			return rootView;
 		}		
 	}
