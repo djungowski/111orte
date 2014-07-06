@@ -22,9 +22,9 @@
         android:id="@+id/random_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/generate_new_number"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="138dp"
+        android:layout_marginTop="57dp"
         android:text="@string/random_number"
         android:textSize="70sp" />
 
